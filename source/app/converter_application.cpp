@@ -3,7 +3,7 @@
 
 int main()
 {
-    std::cout << "Executed 'converter_applicatoin'" << std::endl;
+    std::cout << "Executed 'converter_application'" << std::endl;
 
     cParserLib oParserLib;
     oParserLib.OpenBufferConfigFile();
