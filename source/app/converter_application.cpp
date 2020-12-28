@@ -6,12 +6,10 @@ int main ( int argc, char** argv )
 {
 
     bool bShowHelp = false;
-    uint16_t ui16Number = 0;
     std::string strInputFile;
     std::string strOutputFile;
 
     auto cli = clara::detail::Help(bShowHelp)
-             | clara::detail::Opt( ui16Number, "TestNumber" )["-n"]["--number"]("Test Number")
              | clara::detail::Opt( strInputFile, "InputFile" )["-i"]["--input"]("Path to the input xml file")
              | clara::detail::Opt( strOutputFile, "OutputFile" )["-o"]["--output"]("Path to the output map file");
     
