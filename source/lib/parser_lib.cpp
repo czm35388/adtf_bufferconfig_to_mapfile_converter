@@ -1,15 +1,14 @@
 #include "parser_lib.h"
 
 #include <iostream>
-#include <filesystem>
-#include <pugixml.hpp>
+#include "pugixml.hpp"
 
-int cParserLib::OpenBufferConfigFile()
+int cParserLib::OpenBufferConfigFile(std::string strInput)
 {
-    std::cout << "Called cParserLib::OpenXMLFile()" << std::endl;
+    std::cout << "Called cParserLib::OpenXMLFile(" << strInput.c_str() << ")" <<  std::endl;
 
     pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file("c:/adtf/projects/adtf_bufferconfig_map_converter/package/bin/cc_test_daq.xml");
+    pugi::xml_parse_result result = doc.load_file(strInput.c_str());
     
     if (result)
     {
@@ -18,7 +17,7 @@ int cParserLib::OpenBufferConfigFile()
     else
     {
         std::cout << "XML parsed with errors!" << std::endl;
-        std::cout << "Error description: " << result.description() << "/n";
+        std::cout << "Error description: " << result.description() << std::endl;
         std::cout << "Error offset: " << result.offset << std::endl;
 
         return 0;
