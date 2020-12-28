@@ -1,6 +1,6 @@
 #include <iostream>
 #include <parser_lib.h>
-#include "../../3rdparty/Clara/clara.hpp"
+#include <clara.hpp>
 
 int main ( int argc, char** argv )
 {
@@ -23,11 +23,18 @@ int main ( int argc, char** argv )
 
     if ( bShowHelp )
     {
-    	std::cerr << cli << std::endl;
+    	std::cout << cli << std::endl;
     }
 
-    cParserLib oParserLib;
-    oParserLib.OpenBufferConfigFile(strInputFile);
-
+    if(strInputFile.empty())
+    {
+        std::cerr << "Aborted! No inputfile given!";
+    }
+    else
+    {
+        cParserLib oParserLib;
+        oParserLib.OpenBufferConfigFile(strInputFile);
+    }
+    
     return 0;
 }
