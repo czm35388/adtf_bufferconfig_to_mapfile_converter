@@ -23,9 +23,9 @@ int cParserLib::OpenBufferConfigFile(std::string strInput)
     for(pugi::xml_node oInputNode : oInputNodes)
     {
         // Inputnodes
-        std::cout << "Input Node" << std::endl << std::endl;
         // Buffernodes
         pugi::xml_node oInputBufferNodes = doc.child("settings").child("input");
+        std::cout << "Input Node:" << oInputBufferNodes.child("input").attribute("name").value() << std::endl;
         for(pugi::xml_node oInputBufferNode : oInputBufferNodes)
         {
             std::cout << "Buffer Node:" << std::endl;

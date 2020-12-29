@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <settings>
-    <input>
+    <input name="Input node #1">
         <buffer name="MeasData_1" pack="1" daq_event="100ms" daq_prescaler="10">
             <struct pack="1">
                 <element type="tUInt8"  name="nTestKennfeld" signal="TestByte_983"/>
@@ -16,7 +16,7 @@
             </struct>
         </buffer>
     </input>
-    <output>
+    <output name="Output node #1">
         <buffer name="CalibData_1" pack="1" daq_event="100ms">
             <struct pack="1">
                 <element type="tUInt8"  name="nTestKennfeld" signal="TestByte_983"/>
@@ -31,7 +31,7 @@
             </struct>
         </buffer>
     </output>
-    <output>
+    <output name="Output node #2">
         <buffer name="CalibData_2" pack="1">
             <struct pack="1">
                 <element type="tUInt8"  name="nBypassState" signal="TestByte_993"/>
