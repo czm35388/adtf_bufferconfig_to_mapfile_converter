@@ -1,4 +1,4 @@
-set(APP_NAME converter_application)
+set(APP_NAME xml_to_mapfile_converter)
 
 add_executable(${APP_NAME} ${APP_NAME}.cpp)
 

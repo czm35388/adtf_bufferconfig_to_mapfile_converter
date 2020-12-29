@@ -25,10 +25,9 @@ int main ( int argc, char** argv )
     {
     	std::cout << cli << std::endl;
     }
-
-    if(strInputFile.empty())
+    else if(strInputFile.empty())
     {
-        std::cerr << "Aborted! No inputfile given!";
+        std::cerr << "Aborted! No inputfile given!" << std::endl;
     }
     else
     {

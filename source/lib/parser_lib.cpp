@@ -5,18 +5,12 @@
 
 int cParserLib::OpenBufferConfigFile(std::string strInput)
 {
-    std::cout << "Called cParserLib::OpenXMLFile(" << strInput.c_str() << ")" <<  std::endl;
-
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(strInput.c_str());
     
-    if (result)
+    if (!result)
     {
-        std::cout << "XML parsed without errors!" << std::endl << std::endl;
-    }
-    else
-    {
-        std::cout << "XML parsed with errors!" << std::endl;
+        std::cout << "XML parsing failed!" << std::endl;
         std::cout << "Error description: " << result.description() << std::endl;
         std::cout << "Error offset: " << result.offset << std::endl;
 
@@ -124,7 +118,7 @@ int cParserLib::OpenBufferConfigFile(std::string strInput)
                 nElementCount = 0;
                 std::cout << std::endl;
             }
-            std::cout << "Strct Count: " << nStructCount << std::endl;
+            std::cout << "Struct Count: " << nStructCount << std::endl;
             nStructCount = 0;
             std::cout << std::endl;
         }
