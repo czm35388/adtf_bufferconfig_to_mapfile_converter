@@ -5,5 +5,5 @@
 class cParserLib
 {
    public:
-    int OpenBufferConfigFile(std::string strInput);
+    bool OpenBufferConfigFile(std::string strInput);
 };

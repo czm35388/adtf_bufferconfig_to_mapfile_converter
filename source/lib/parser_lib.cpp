@@ -1,20 +1,22 @@
 #include "parser_lib.h"
 
 #include <iostream>
+#include <unistd.h>
 #include "pugixml.hpp"
 
-int cParserLib::OpenBufferConfigFile(std::string strInput)
+bool cParserLib::OpenBufferConfigFile(std::string strInput)
 {
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(strInput.c_str());
-    
+
+
     if (!result)
     {
         std::cout << "XML parsing failed!" << std::endl;
         std::cout << "Error description: " << result.description() << std::endl;
         std::cout << "Error offset: " << result.offset << std::endl;
 
-        return 0;
+        return false;
     }
 
     pugi::xml_node oInputNodes = doc.first_child().child("input");
@@ -126,6 +128,6 @@ int cParserLib::OpenBufferConfigFile(std::string strInput)
     }
     std::cout << std::endl;
 
-    return 0;
+    return true;
 }
 
