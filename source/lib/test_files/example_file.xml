@@ -1,24 +1,6 @@
-# Converter for ADTF2 BufferConfigurationfile (ADTF2) to Mapfile (ADTF3)
-
-This repository includes a converter for ADTF2 BufferConfigurationfiles to ADTF3 Mapfiles.
-They are used for initializing the De-/Encoderfilter for the Device- and Calibrationtoolbox.
-
-You can use this tool within your toolchain to converter the old ADTF2 xml files to the new ADTF3 map file standard.
-
-The tool will be deliverd as executable for 
-* Windows
-* Unix 
-machines.
-
-Simple in usage, fast converting and a possible debugging of the converter are the positiv apsects of this tool.
-The implementation is based on the "pugixml" parser.
-
-Example Bufferconfiguration file:
-
-```xml
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <settings>
-    <input>
+    <input name="Input node #1">
         <buffer name="MeasData_1" pack="1" daq_event="100ms" daq_prescaler="10">
             <struct pack="1">
                 <element type="tUInt8"  name="nTestKennfeld" signal="TestByte_983"/>
@@ -34,7 +16,7 @@ Example Bufferconfiguration file:
             </struct>
         </buffer>
     </input>
-    <output>
+    <output name="Output node #1">
         <buffer name="CalibData_1" pack="1" daq_event="100ms">
             <struct pack="1">
                 <element type="tUInt8"  name="nTestKennfeld" signal="TestByte_983"/>
@@ -49,7 +31,7 @@ Example Bufferconfiguration file:
             </struct>
         </buffer>
     </output>
-    <output>
+    <output name="Output node #2">
         <buffer name="CalibData_2" pack="1">
             <struct pack="1">
                 <element type="tUInt8"  name="nBypassState" signal="TestByte_993"/>
@@ -57,4 +39,3 @@ Example Bufferconfiguration file:
         </buffer>
     </output>
 </settings>
-```
