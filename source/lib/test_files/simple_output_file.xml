@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<settings>
+    <output name="output_node_1">
+        <buffer name="buffer_node_1">
+            <struct>
+                <element name="element_node_1"/>
+            </struct>
+        </buffer>
+    </output>
+    <output name="output_node_2">
+        <buffer name="buffer_node_2">
+            <struct>
+                <element name="element_node_2"/>
+            </struct>
+        </buffer>
+    </output>
+    <output name="output_node_3">
+        <buffer name="buffer_node_3">
+            <struct>
+                <element name="element_node_3"/>
+            </struct>
+        </buffer>
+    </output>
+</settings>
