@@ -14,8 +14,9 @@ compiler:
   - chmod +x cmake-*-Linux-x86_64.sh
   - ./cmake-*-Linux-x86_64.sh --exclude-subdir --skip-license
   - export PATH="${PWD}/bin:$PATH"
+  - ls -l
   - cd ../
-  - ls
+  - ls -l
 
 #
 # Build Dependencies
@@ -25,8 +26,8 @@ before_script:
   #
   # Build Folder
   #
-  - mkdir build
-  - cd build
+  - mkdir build && cd build
+  - ls -l
   - cmake ..
 
 script:
