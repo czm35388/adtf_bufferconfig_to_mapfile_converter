@@ -5,7 +5,7 @@
 #include "../../3rdparty/Catch2/catch.hpp"
 
 // this macro is necessary, cause the test executable is not available in the source folder
-#define TEST_FILE_DIR "./source/lib/test_files/"
+#define TEST_FILE_DIR "source/lib/test_files/"
 
 // method for generating the path to the test xml file
 std::string GenTestFilePath(std::string TestFileName)
@@ -18,7 +18,7 @@ std::string GenTestFilePath(std::string TestFileName)
 TEST_CASE("Open existing xml file", "[open_xml_file]") 
 {
     cParserLib oTestParser;
-    REQUIRE(oTestParser.OpenBufferConfigFile(GenTestFilePath("example_file.xml")));
+    REQUIRE(oTestParser.OpenBufferConfigFile("source/lib/test_files/example_file.xml"));
 }
 
 TEST_CASE("Open non existing xml file", "[open_non_existing_xml_file]")
