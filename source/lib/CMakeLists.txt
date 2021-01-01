@@ -15,12 +15,21 @@ target_include_directories(${LIB_NAME}
     PUBLIC 
         ${CMAKE_CURRENT_SOURCE_DIR})
 
-
+        
 # testing binary
 add_executable(${LIB_TEST_NAME} ${LIB_TEST_NAME}.cpp)
 target_link_libraries(${LIB_TEST_NAME} ${LIB_NAME})
 
 # define test
-add_test(
-  NAME catch_test
-  COMMAND $<TARGET_FILE:${LIB_TEST_NAME}> --success)
+add_test( 
+    NAME 
+        ${LIB_TEST_NAME} 
+    COMMAND 
+        ${LIB_TEST_NAME})
+        
+# copy the test files to the binary folder
+file(
+    COPY 
+        ${CMAKE_CURRENT_SOURCE_DIR}/test_files
+    DESTINATION 
+        ${CMAKE_CURRENT_BINARY_DIR}/)
