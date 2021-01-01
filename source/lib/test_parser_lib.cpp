@@ -21,7 +21,7 @@ TEST_CASE("Open existing xml file", "[open_xml_file]")
     getcwd(tmp, 512);
     std::cout << "Current working directory: " << tmp << std::endl;
     cParserLib oTestParser;
-    REQUIRE(oTestParser.OpenBufferConfigFile("/test_files/example_file.xml"));
+    REQUIRE(oTestParser.OpenBufferConfigFile("./test_files/example_file.xml"));
 }
 
 TEST_CASE("Open non existing xml file", "[open_non_existing_xml_file]")
