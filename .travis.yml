@@ -34,5 +34,6 @@ script:
   # once CMake has done its job we just build using make as usual
   - make
   # run the tests with additional outputs
+  - ls -l
   - make test ARGS="-V"
 
