@@ -10,15 +10,8 @@
 // method for generating the path to the test xml file
 std::string GenTestFilePath(std::string TestFileName)
 {
-    char buffer[PATH_MAX];
-    if (getcwd(buffer, sizeof(buffer)) != NULL) 
-    {
-        std::cout <<  "Current working directory : " <<  buffer << std::endl;
-    }
     std::string strTestFilePath{TEST_FILE_DIR};
     strTestFilePath.append(TestFileName);
-
-    std::cout << "Filedir: " << strTestFilePath << std::endl;
     return strTestFilePath;
 }
 
