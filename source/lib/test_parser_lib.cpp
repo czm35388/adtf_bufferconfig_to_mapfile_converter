@@ -5,7 +5,7 @@
 #include "../../3rdparty/Catch2/catch.hpp"
 
 // this macro is necessary, cause the test executable is not available in the source folder
-#define TEST_FILE_DIR "../source/lib/test_files/"
+#define TEST_FILE_DIR "./source/lib/test_files/"
 
 // method for generating the path to the test xml file
 std::string GenTestFilePath(std::string TestFileName)
