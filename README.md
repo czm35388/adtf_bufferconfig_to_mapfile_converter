@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/czm35388/adtf_bufferconfig_to_mapfile_converter.svg?branch=master)](https://travis-ci.com/czm35388/adtf_bufferconfig_to_mapfile_converter) 
+
 # Converter for ADTF2 BufferConfigurationfile (ADTF2) to Mapfile (ADTF3)
 
 This repository includes a converter for ADTF2 BufferConfigurationfiles to ADTF3 Mapfiles.
