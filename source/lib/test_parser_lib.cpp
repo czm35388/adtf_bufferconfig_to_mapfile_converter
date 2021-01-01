@@ -17,6 +17,9 @@ std::string GenTestFilePath(std::string TestFileName)
 
 TEST_CASE("Open existing xml file", "[open_xml_file]") 
 {
+    char tmp[512];
+    getcwd(tmp, 512);
+    std::cout << "Current working directory: " << tmp << std::endl;
     cParserLib oTestParser;
     REQUIRE(oTestParser.OpenBufferConfigFile("source/lib/test_files/example_file.xml"));
 }
