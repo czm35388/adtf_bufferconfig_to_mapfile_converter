@@ -20,11 +20,34 @@ add_definitions(
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# enable testing
-include(CTest)
-enable_testing()
 
 # add necessary source
 add_subdirectory(source)
 
+#------------------------------------------------
+# TESTSECTION
+#------------------------------------------------
 
+# include the 'CTest' Modul
+include(CTest)
+
+# enable testing
+enable_testing()
+
+# specify compiler settings for code coverage
+# these settings are only available for gcc and clang!
+if (UNIX AND ENABLE_COVERAGE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g ")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+    if("${CMAKE_CXX_COMPILER_ID}" MATCHES "(Apple)?[Cc]lang")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-instr-generate -fcoverage-mapping")
+    elseif(CMAKE_COMPILER_IS_GNUCXX)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftest-coverage")
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+    endif()
+endif ()
+
+# add the 'test' directory containing all test's
+add_subdirectory(test)
