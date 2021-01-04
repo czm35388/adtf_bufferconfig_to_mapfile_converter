@@ -31,9 +31,18 @@ before_script:
   - cmake ..
 
 script:
+  - cmake -DENABLE_COVERAGE=ON
   # once CMake has done its job we just build using make as usual
   - make
   # run the tests with additional outputs
-  - ls -l source/lib/test_files/
-  - make test ARGS="-V"
+  # - make test ARGS="-V"
+  # run the tests with code coverage
+  - make test_parser_lib_cov ARGS="-V"
+  - ls -l
+
+  # - cmake -DENABLE_COVERAGE=ON -DCMAKE_CXX_COMPILER="g++-6" ..
+  # - make
+  # - make test
+  # - cd ..
+  # - bash <(curl -s https://codecov.io/bash)
 
