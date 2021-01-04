@@ -36,8 +36,10 @@ script:
   # run the tests with additional outputs
   # - make test ARGS="-V"
   - make test_parser_lib_cov ARGS="-V"
+  # clean up coverage folder
+  - make test_parser_lib_clean_up
   # change directory to the coverage folder
   - cd coverage
   # download and call bash script from codecov.io/bash
-  - bash <(curl -s https://codecov.io/bash)
+  - bash < (curl -s https://codecov.io/bash)
 

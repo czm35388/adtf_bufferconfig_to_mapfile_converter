@@ -37,4 +37,13 @@ add_custom_command(TARGET ${LIB_TEST_NAME}_cov
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/coverage
     )
 
+add_custom_target(${LIB_TEST_NAME}_clean_up
+    COMMAND echo "==== CLEAN - UP ===="
+    COMMAND mv test_parser_lib.cpp.gcov ..
+    COMMAND rm -fR *.gcov
+    COMMAND mv ../test_parser_lib.cpp.gcov .
+    COMMAND ls -l
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/coverage
+    )
+
 add_dependencies(${LIB_TEST_NAME}_cov ${LIB_TEST_NAME})
