@@ -1,8 +1,6 @@
 #include "parser_lib.h"
 
 #include <iostream>
-#include <unistd.h>
-#include "pugixml.hpp"
 
 bool cParserLib::OpenBufferConfigFile(std::string strInput)
 {
@@ -21,89 +19,108 @@ bool cParserLib::OpenBufferConfigFile(std::string strInput)
 
     pugi::xml_node globals = doc.child("settings");
 
-    for (pugi::xml_node input: globals.children("input"))
-    {
-        m_ui8InputCount += 1;
+    HandleInputNode(globals.children("input"));
+    HandleOutputNode(globals.children("output"));
 
-        for (pugi::xml_attribute input_attr: input.attributes())
+    std::cout << std::endl << "Parsing finished!" << std::endl << std::endl;
+
+    std::cout << "This bufferconfig file contains: " << std::endl;
+    std::cout << "Input nodes:   " << m_ui8InputCount << std::endl;
+    std::cout << "Output nodes:  " << m_ui8OutputCount << std::endl;
+    std::cout << "Buffer nodes:  " << m_ui8BufferCount << std::endl;
+    std::cout << "Struct nodes:  " << m_ui8StructCount << std::endl;
+    std::cout << "Element nodes: " << m_ui8ElementCount << std::endl;
+
+    return true;
+}
+
+// Handle XML node methods
+void cParserLib::HandleInputNode(pugi::xml_object_range<pugi::xml_named_node_iterator> input_nodes)
+{
+    for (const auto input_node : input_nodes)
+    {
+        m_ui8InputCount +=1;
+        
+        for (const auto input_attr: input_node.attributes())
         {
             std::cout << " " << input_attr.name() << "=" << input_attr.value();
         }
 
-        for (pugi::xml_node buffer: input.children("buffer"))
-        {
-            m_ui8BufferCount += 1;
+        std::cout << std::endl;
 
-            for (pugi::xml_attribute buffer_attr: buffer.attributes())
-            {
-                std::cout << " " << buffer_attr.name() << "=" << buffer_attr.value();
-            }
+        HandleBufferNode(input_node.children("buffer"));
 
-                for (pugi::xml_node struct_node: buffer.children("struct"))
-                {
-                    m_ui8StructCount += 1;
-
-                    for (pugi::xml_attribute struct_attr: struct_node.attributes())
-                    {
-                        std::cout << " " << struct_attr.name() << "=" << struct_attr.value();
-                    }
-
-                        for (pugi::xml_node element_node: struct_node.children("element"))
-                        {
-                            m_ui8ElementCount += 1;
-
-                            for (pugi::xml_attribute element_attr: element_node.attributes())
-                            {
-                                std::cout << " " << element_attr.name() << "=" << element_attr.value();
-                            }   
-                        }
-                }
-        }
         std::cout << std::endl;
     }
+}
 
-    for (pugi::xml_node output: globals.children("output"))
+void cParserLib::HandleOutputNode(pugi::xml_object_range<pugi::xml_named_node_iterator> output_nodes)
+{
+    for (const auto output_node : output_nodes)
     {
         m_ui8OutputCount +=1;
         
-        for (pugi::xml_attribute output_attr: output.attributes())
+        for (const auto output_attr: output_node.attributes())
         {
             std::cout << " " << output_attr.name() << "=" << output_attr.value();
         }
 
-        for (pugi::xml_node buffer: output.children("buffer"))
-        {
-            m_ui8BufferCount += 1;
+        std::cout << std::endl;
 
-            for (pugi::xml_attribute buffer_attr: buffer.attributes())
-            {
-                std::cout << " " << buffer_attr.name() << "=" << buffer_attr.value();
-            }
-
-            for (pugi::xml_node struct_node: buffer.children("struct"))
-            {
-                m_ui8StructCount += 1;
-
-                for (pugi::xml_attribute struct_attr: struct_node.attributes())
-                {
-                    std::cout << " " << struct_attr.name() << "=" << struct_attr.value();
-                }
-
-                for (pugi::xml_node element_node: struct_node.children("element"))
-                {
-                    m_ui8ElementCount += 1;
-
-                    for (pugi::xml_attribute element_attr: element_node.attributes())
-                    {
-                        std::cout << " " << element_attr.name() << "=" << element_attr.value();
-                    }   
-                }
-            }
-        }
+        HandleBufferNode(output_node.children("buffer"));
 
         std::cout << std::endl;
     }
-    return true;
+}
+
+void cParserLib::HandleBufferNode(pugi::xml_object_range<pugi::xml_named_node_iterator> buffer_nodes)
+{
+    for (const auto buffer_node : buffer_nodes)
+    {
+        m_ui8BufferCount += 1;
+
+        for (const auto buffer_attr : buffer_node.attributes())
+        {
+            std::cout << " " << buffer_attr.name() << "=" << buffer_attr.value();
+        }
+
+        std::cout << std::endl;
+
+        HandleStructNode(buffer_node.children("struct"));
+
+    }
+}
+
+void cParserLib::HandleStructNode(pugi::xml_object_range<pugi::xml_named_node_iterator> struct_nodes)
+{
+    for (const auto struct_node : struct_nodes)
+    {
+        m_ui8StructCount += 1;
+
+        for (const auto struct_attr: struct_node.attributes())
+        {
+            std::cout << " " << struct_attr.name() << "=" << struct_attr.value();
+        }
+
+        std::cout << std::endl;
+        
+        HandleElementNode(struct_node.children("element"));
+    }
+}
+
+void cParserLib::HandleElementNode(pugi::xml_object_range<pugi::xml_named_node_iterator> element_nodes)
+{
+    for (const auto element_node : element_nodes)
+    {
+        m_ui8ElementCount += 1;
+
+        for (const auto element_attr: element_node.attributes())
+        {
+            std::cout << " " << element_attr.name() << "=" << element_attr.value();
+        }   
+
+        std::cout << std::endl;
+    }
 }
 
 // Getter methods

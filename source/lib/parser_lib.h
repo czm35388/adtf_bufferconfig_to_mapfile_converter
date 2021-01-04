@@ -2,10 +2,19 @@
 
 #include <iostream>
 
+#include "../../3rdparty/pugixml-1.10/src/pugixml.hpp"
+
 class cParserLib
 {
     public:
         bool OpenBufferConfigFile(std::string strInput);
+
+        // Handle XML node methods
+        void HandleInputNode(pugi::xml_object_range<pugi::xml_named_node_iterator> input_nodes);
+        void HandleOutputNode(pugi::xml_object_range<pugi::xml_named_node_iterator> output_nodes);
+        void HandleBufferNode(pugi::xml_object_range<pugi::xml_named_node_iterator> buffer_nodes);
+        void HandleStructNode(pugi::xml_object_range<pugi::xml_named_node_iterator> struct_nodes);
+        void HandleElementNode(pugi::xml_object_range<pugi::xml_named_node_iterator> element_nodes);
 
         // Getter methods
         uint8_t GetInputCount();
