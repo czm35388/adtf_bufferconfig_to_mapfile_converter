@@ -16,7 +16,18 @@ machines.
 Simple in usage, fast converting and a possible debugging of the converter are the positiv apsects of this tool.
 The implementation is based on the "pugixml" parser.
 
-Example Bufferconfiguration file:
+## Converting syntax
+
+| __old buffer xml node__ | __new map xml node__ | __comment__ |
+| - | - | - |  
+| ```<output>```  | ```<inputs>```  | input pins |
+| ```<input>```   | ```<outputs>``` | output pins |
+| ```<buffer>```  | ```<input>``` or ```<output>``` | pin description |
+| ```<struct>```  | ```<struct>``` | pin description |
+| ```<element>``` | ```<assignment>``` | signal element |
+
+
+### Example for old buffer-configuration-file (.xml)
 
 ```xml
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
@@ -30,11 +41,6 @@ Example Bufferconfiguration file:
             <struct pack="1" array="idx=15:16" array_format="%03d">
                 <element type="tFloat32"  name="fKL" signal="TestByte_$idx$" />
             </struct>
-            <struct pack="1">
-                <element type="tFloat32"  name="fNoise_ampl" signal="noise_ampl" />
-                <element type="tUInt32"  name="nTest" signal="TestDWord_996" />
-                <element type="tUInt8"  name="nKL3" signal="TestByte_000" />
-            </struct>
         </buffer>
     </input>
     <output>
@@ -43,21 +49,36 @@ Example Bufferconfiguration file:
                 <element type="tUInt8"  name="nTestKennfeld" signal="TestByte_983"/>
                 <element type="tUInt16"  name="nKL7" signal="TestWord_001" />
             </struct>
-            <struct pack="1" array="idx=15:16" array_format="%03d">
-                <element type="tFloat32"  name="fKL" signal="TestByte_$idx$" />
-            </struct>
-            <struct pack="1">
-                <element type="tFloat32"  name="fNoise_ampl" signal="noise_ampl" />
-                <element type="tUInt32"  name="nKL3" signal="TestDWord_996" />
-            </struct>
-        </buffer>
-    </output>
-    <output>
-        <buffer name="CalibData_2" pack="1">
-            <struct pack="1">
-                <element type="tUInt8"  name="nBypassState" signal="TestByte_993"/>
-            </struct>
-        </buffer>
     </output>
 </settings>
+```
+
+### Example for new Mapfile (.map)
+
+```xml
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<mapping codec="XCP" version="2.00">
+    <outputs>
+        <output name="MeasData" polling_interval="100000">
+            <assignment>
+                <to>testudword1</to>
+                <from>signals.testudword1</from>
+                <type>tUInt32</type>
+                <unit_conversion>false</unit_conversion>
+            </assignment>
+            <assignment>
+                <to>period</to>
+                <from>parameters.period</from>
+                <type>tFloat32</type>
+                <unit_conversion>false</unit_conversion>
+            </assignment>
+            <assignment>
+                <to>period_d</to>
+                <from>parameters.period_d</from>
+                <type>tFloat64</type>
+                <unit_conversion>false</unit_conversion>
+            </assignment>
+        </output>
+    </outputs>
+</mapping>
 ```
