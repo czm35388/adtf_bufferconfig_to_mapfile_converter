@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/czm35388/adtf_bufferconfig_to_mapfile_converter.svg?branch=master)](https://travis-ci.com/czm35388/adtf_bufferconfig_to_mapfile_converter) 
+[![codecov](https://codecov.io/gh/czm35388/adtf_bufferconfig_to_mapfile_converter/branch/master/graph/badge.svg)](https://codecov.io/gh/czm35388/adtf_bufferconfig_to_mapfile_converter)
 
 # Converter for ADTF2 BufferConfigurationfile (ADTF2) to Mapfile (ADTF3)
 
