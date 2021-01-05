@@ -1,8 +1,8 @@
-#include <parser_lib.h>
-#include <iostream>
-
 #define CATCH_CONFIG_MAIN
-#include "../../3rdparty/Catch2/catch.hpp"
+#include "catch.hpp"
+
+#include <iostream>
+#include <parser_lib.h>
 
 TEST_CASE("Open existing xml file", "[open_xml_file]") 
 {

@@ -5,6 +5,7 @@ set(LIB_TEST_NAME test_parser_lib)
 add_executable(${LIB_TEST_NAME} ${LIB_TEST_NAME}.cpp)
 target_link_libraries(${LIB_TEST_NAME} ${LIB_NAME})
 target_include_directories(${LIB_TEST_NAME} PRIVATE ../../source/lib/)
+include_directories(${CMAKE_SOURCE_DIR}/3rdparty/Catch2/)
 
 # define test
 add_test( 
@@ -31,8 +32,7 @@ set(OBJECT_DIR ${CMAKE_BINARY_DIR}/test/parser_lib_test/CMakeFiles/test_parser_l
 
 add_custom_command(TARGET ${LIB_TEST_NAME}_cov
     COMMAND echo "==== CODE - COVERAGE ===="
-    COMMAND gcov -a -b ${CMAKE_SOURCE_DIR}/*.cpp -o ${OBJECT_DIR} -f | grep -A 5 "parser_lib.cpp" > CoverageSummary.tmp
-    COMMAND cat CoverageSummary.tmp
+    COMMAND gcov -a -b ${CMAKE_SOURCE_DIR}/*.cpp -o ${OBJECT_DIR}
     COMMAND echo "-- Coverage files have been output to ${CMAKE_BINARY_DIR}/coverage"
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/coverage
     )
