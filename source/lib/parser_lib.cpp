@@ -1,6 +1,7 @@
 #include "parser_lib.h"
 
 #include <iostream>
+#include <memory>
 
 bool cParserLib::OpenBufferConfigFile(std::string strInput)
 {
