@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
 
 #include "../../3rdparty/pugixml-1.10/src/pugixml.hpp"
 

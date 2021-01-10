@@ -1,8 +1,5 @@
 #include "parser_lib.h"
 
-#include <iostream>
-#include <memory>
-
 bool cParserLib::OpenBufferConfigFile(std::string strInput)
 {
     pugi::xml_document buffer_config_file;
@@ -12,10 +9,7 @@ bool cParserLib::OpenBufferConfigFile(std::string strInput)
 
     if (!result)
     {
-        std::cout << "XML parsing failed!" << std::endl;
-        std::cout << "Error description: " << result.description() << std::endl;
-        std::cout << "Error offset: " << result.offset << std::endl;
-
+        std::cerr << "XML parsing failed! Error description: " << result.description() << std::endl;
         return false;
     }
 
