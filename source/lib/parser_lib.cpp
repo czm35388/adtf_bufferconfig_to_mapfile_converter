@@ -136,8 +136,8 @@ void cParserLib::HandleElementNode(pugi::xml_node struct_node, pugi::xml_node ma
     for (const auto element_node : struct_node.children("element"))
     {
         m_ui8ElementCount += 1;
-        pugi::xml_node map_element_node = map_struct_node.append_child("element");
-        HandleAttributes(element_node.attributes(), map_element_node);
+        pugi::xml_node map_assignment_node = map_struct_node.append_child("assignment");
+        HandleElementAttributes(element_node, map_assignment_node);
     }
 }
 
@@ -146,6 +146,15 @@ void cParserLib::HandleAttributes(pugi::xml_object_range<pugi::xml_attribute_ite
     for (const auto node_attribute : node_attributes)
     {
         node.append_attribute(node_attribute.name()) = node_attribute.value();
+    }
+}
+
+void cParserLib::HandleElementAttributes(pugi::xml_node element_node, pugi::xml_node map_assignment_node)
+{
+    for (const auto element_attribute : element_node.attributes())
+    {
+        pugi::xml_node assignment_child = map_assignment_node.append_child(element_attribute.name());
+        assignment_child.text().set(element_attribute.value());
     }
 }
 
