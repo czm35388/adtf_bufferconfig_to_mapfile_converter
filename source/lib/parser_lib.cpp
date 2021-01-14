@@ -153,8 +153,21 @@ void cParserLib::HandleElementAttributes(pugi::xml_node element_node, pugi::xml_
 {
     for (const auto element_attribute : element_node.attributes())
     {
-        pugi::xml_node assignment_child = map_assignment_node.append_child(element_attribute.name());
-        assignment_child.text().set(element_attribute.value());
+
+        if(!std::string("signal").compare(element_attribute.name()))
+        {
+            pugi::xml_node to_node = map_assignment_node.append_child("to");
+            pugi::xml_node from_node = map_assignment_node.append_child("from");
+            std::string strFromString = { "signals." };
+            strFromString.append(element_attribute.value());
+            to_node.text().set(element_attribute.value());
+            from_node.text().set(strFromString.c_str());
+        }
+        else
+        {
+            pugi::xml_node assignment_child = map_assignment_node.append_child(element_attribute.name());
+            assignment_child.text().set(element_attribute.value());
+        }
     }
 }
 
