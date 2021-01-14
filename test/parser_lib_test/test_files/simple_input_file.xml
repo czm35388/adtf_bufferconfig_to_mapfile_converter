@@ -2,21 +2,21 @@
 <settings>
     <input name="input_node_1">
         <buffer name="buffer_node_1">
-            <struct>
+            <struct name="struct_node_1">
                 <element name="element_node_1"/>
             </struct>
         </buffer>
     </input>
     <input name="input_node_2">
         <buffer name="buffer_node_2">
-            <struct>
+            <struct name="struct_node2">
                 <element name="element_node_2"/>
             </struct>
         </buffer>
     </input>
     <input name="input_node_3">
         <buffer name="buffer_node_3">
-            <struct>
+            <struct name="struct_node3">
                 <element name="element_node_3"/>
             </struct>
         </buffer>
